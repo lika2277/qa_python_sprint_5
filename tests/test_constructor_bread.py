@@ -2,6 +2,7 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from data import Url
+from locators import constructor
 
 url = Url()
 
@@ -12,18 +13,18 @@ driver.get(url.get_url())
 diff = 40
 
 # Расчет позиции первой категории (так как она первая по-умолчанию)
-y = int(driver.find_element(By.XPATH, './/h2[text()="Булки"]').rect.get('y'))
+y = int(driver.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y'))
 
 # Нажатие на кнопку "Соусы"
-driver.find_element(By.XPATH, './/main/section[1]/div/div[2]').click()
+driver.find_element(By.XPATH, constructor.get('tabs').get('sauce')).click()
 
 # Нажатие на кнопку "Булки"
-driver.find_element(By.XPATH, './/main/section[1]/div/div[1]').click()
+driver.find_element(By.XPATH, constructor.get('tabs').get('bread')).click()
 
 # Ожидание анимации
 sleep(1)
 
 # Проверка прокрутки до начала области просмотра
-assert int(driver.find_element(By.XPATH, './/h2[text()="Булки"]').rect.get('y')) <= (y + diff)
+assert int(driver.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y')) <= (y + diff)
 
 driver.quit()
