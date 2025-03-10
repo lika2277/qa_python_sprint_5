@@ -1,11 +1,11 @@
-import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from data import User
 
-email = os.getenv('TEST_EMAIL')
-password = os.getenv('TEST_PASSWORD')
+user = User()
+email, password = user.get_credentials().values()
 
 driver = webdriver.Chrome()
 driver.get("https://stellarburgers.nomoreparties.site/register")
