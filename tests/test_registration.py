@@ -3,9 +3,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from generator import Generator
+from data import Url
+
+url = Url()
 
 driver = webdriver.Chrome()
-driver.get("https://stellarburgers.nomoreparties.site/")
+driver.get(url.get_url())
 
 # Переход на страницу авторизации
 # Клик по кнопке "Личный кабинет"

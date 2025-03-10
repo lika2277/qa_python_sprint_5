@@ -1,9 +1,12 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from data import Url
+
+url = Url()
 
 driver = webdriver.Chrome()
-driver.get("https://stellarburgers.nomoreparties.site/")
+driver.get(url.get_url())
 
 # Расчет позиции первой категории (так как она первая по-умолчанию)
 y = int(driver.find_element(By.XPATH, './/h2[text()="Булки"]').rect.get('y'))

@@ -2,13 +2,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import User
+from data import User, Url
 
 user = User()
+url = Url()
+
 email, password = user.get_credentials().values()
 
 driver = webdriver.Chrome()
-driver.get("https://stellarburgers.nomoreparties.site/")
+driver.get(url.get_url())
 
 # Переход в личный кабинет
 # Клик по кнопке "Личный кабинет"

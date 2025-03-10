@@ -2,13 +2,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import User
+from data import User, Url
 
 user = User()
+url = Url()
+
 email, password = user.get_credentials().values()
 
 driver = webdriver.Chrome()
-driver.get("https://stellarburgers.nomoreparties.site/forgot-password")
+driver.get(url.get_url('forgot'))
 
 # Клик по кнопке "Войти"
 driver.find_element(By.XPATH, ".//a[@href='/login']").click()
