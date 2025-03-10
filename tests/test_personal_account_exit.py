@@ -1,4 +1,4 @@
-from selenium import webdriver
+import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,39 +10,37 @@ url = Url()
 
 email, password = user.get_credentials().values()
 
-driver = webdriver.Chrome()
-driver.get(url.get_url())
+def test_constructor_switch_sauce(browser):
+    browser.get(url.get_url())
 
-# Клик по кнопке "Личный кабинет"
-driver.find_element(By.XPATH, links.get('account')).click()
+    # Клик по кнопке "Личный кабинет"
+    browser.find_element(By.XPATH, links.get('account')).click()
 
-# Ожидание показа формы входа
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, buttons.get('enter'))))
+    # Ожидание показа формы входа
+    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, buttons.get('enter'))))
 
-# Ввод "Email"
-driver.find_element(By.XPATH, entrance.get('inputs').get('email')).send_keys(email)
+    # Ввод "Email"
+    browser.find_element(By.XPATH, entrance.get('inputs').get('email')).send_keys(email)
 
-# Ввод "Пароль"
-driver.find_element(By.XPATH, entrance.get('inputs').get('password')).send_keys(password)
+    # Ввод "Пароль"
+    browser.find_element(By.XPATH, entrance.get('inputs').get('password')).send_keys(password)
 
-# Клик по кнопке "Войти"
-driver.find_element(By.XPATH, buttons.get('enter')).click()
+    # Клик по кнопке "Войти"
+    browser.find_element(By.XPATH, buttons.get('enter')).click()
 
-# Ожидание открытия главного экрана
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, links.get('account'))))
+    # Ожидание открытия главного экрана
+    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, links.get('account'))))
 
-# Клик по кнопке "Личный кабинет"
-driver.find_element(By.XPATH, links.get('account')).click()
+    # Клик по кнопке "Личный кабинет"
+    browser.find_element(By.XPATH, links.get('account')).click()
 
-# Ожидание открытия личного кабинета
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, account.get('email'))))
+    # Ожидание открытия личного кабинета
+    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, account.get('email'))))
 
-# Клик по кнопке "Выйти"
-driver.find_element(By.XPATH, buttons.get('exit')).click()
+    # Клик по кнопке "Выйти"
+    browser.find_element(By.XPATH, buttons.get('exit')).click()
 
-# Ожидание открытия главного экрана
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, buttons.get('enter'))))
+    # Ожидание открытия главного экрана
+    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, buttons.get('enter'))))
 
-assert driver.find_element(By.XPATH, buttons.get('enter'))
-
-driver.quit()
+    assert browser.find_element(By.XPATH, buttons.get('enter'))

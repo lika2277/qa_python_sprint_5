@@ -1,30 +1,28 @@
+import pytest
 from time import sleep
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from data import Url
 from locators import constructor
 
 url = Url()
 
-driver = webdriver.Chrome()
-driver.get(url.get_url())
+def test_constructor_switch_bread(browser):
+    browser.get(url.get_url())
 
-# Отступ у заголовка
-diff = 40
+    # Отступ у заголовка
+    diff = 40
 
-# Расчет позиции первой категории (так как она первая по-умолчанию)
-y = int(driver.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y'))
+    # Расчет позиции первой категории (так как она первая по-умолчанию)
+    y = int(browser.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y'))
 
-# Нажатие на кнопку "Соусы"
-driver.find_element(By.XPATH, constructor.get('tabs').get('sauce')).click()
+    # Нажатие на кнопку "Соусы"
+    browser.find_element(By.XPATH, constructor.get('tabs').get('sauce')).click()
 
-# Нажатие на кнопку "Булки"
-driver.find_element(By.XPATH, constructor.get('tabs').get('bread')).click()
+    # Нажатие на кнопку "Булки"
+    browser.find_element(By.XPATH, constructor.get('tabs').get('bread')).click()
 
-# Ожидание анимации
-sleep(1)
+    # Ожидание анимации
+    sleep(1)
 
-# Проверка прокрутки до начала области просмотра
-assert int(driver.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y')) <= (y + diff)
-
-driver.quit()
+    # Проверка прокрутки до начала области просмотра
+    assert int(browser.find_element(By.XPATH, constructor.get('sections').get('bread')).rect.get('y')) <= (y + diff)
