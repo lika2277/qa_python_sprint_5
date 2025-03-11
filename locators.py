@@ -19,7 +19,7 @@ links = {
     'constructor': 'a[class^="AppHeader_header__link"][href="/"]',
     'logo': 'div[class^="AppHeader_header__logo"] > a',
     # Регистрация
-    'register': './/a[@href="/register"]'
+    'register': 'a[class^="Auth_link"][href="/register"]'
 }
 
 # Личный кабинет
@@ -37,16 +37,18 @@ buttons = {
 }
 
 fields = {
-    'registration': {
-        'email': './/fieldset[2]//input[@type="text"]',
-        'name': './/fieldset[1]//input[@type="text"]'
-    },
-    'email': 'fieldset[class^="Auth_fieldset"] input[type="text"][name="name"]',
+    'name': 'fieldset[class^="Auth_fieldset_"]:nth-child(1) input[type="text"]',
+    'email': 'fieldset[class^="Auth_fieldset"]:nth-child(2) input[type="text"]',
     'password': 'fieldset[class^="Auth_fieldset"] input[type="password"]'
 }
 
+errors = {
+    'field': '.input.input_type_password.input_size_default.input_status_error',
+    'message': '.input__error.text_type_main-default'
+}
+
 forms = {
-    'login': 'form[class^="Auth_form__"]'
+    'login': 'form[class^="Auth_form__"]',
 }
 
 # Локаторы для страницы конструктора

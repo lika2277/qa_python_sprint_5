@@ -9,7 +9,6 @@ def test_entrance_from_cabinet(browser):
 
     email, password = User().get_credentials().values()
 
-    # Переход в личный кабинет
     # Клик по кнопке "Личный кабинет"
     browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
 
