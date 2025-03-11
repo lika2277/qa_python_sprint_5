@@ -1,5 +1,3 @@
-
-
 # Локаторы для страницы входа
 entrance = {
     # Поля ввода
@@ -11,23 +9,13 @@ entrance = {
     }
 
 }
-# Главная страница
-main = {
-    # Кнопки
-    'buttons': {
-        # Оформить заказ
-        'order': './/main/section[2]//button',
-        # "Войти"
-        'enter': './/main/section[2]//button'
-    }
-}
 
 # Ссылки
 links = {
     # "Войти"
     'login': './/a[@href="/login"]',
     # "Личный кабинет"
-    'account': './/a[@href="/account"]',
+    'account': 'a[class^="AppHeader_header__link"][href="/account"]',
     # Регистрация
     'register': './/a[@href="/register"]'
 }
@@ -49,7 +37,13 @@ fields = {
     'registration': {
         'email': './/fieldset[2]//input[@type="text"]',
         'name': './/fieldset[1]//input[@type="text"]'
-    }
+    },
+    'email': 'fieldset[class^="Auth_fieldset"] input[type="text"][name="name"]',
+    'password': 'fieldset[class^="Auth_fieldset"] input[type="password"]'
+}
+
+forms = {
+    'login': 'form[class^="Auth_form__"]'
 }
 
 # Локаторы для страницы конструктора
@@ -58,4 +52,16 @@ constructor = {
     'tab': 'div[class^="tab_tab__"]',
     # Секции конструктора
     'heading': 'div[class^="BurgerIngredients_ingredients__menuContainer"] > h2'
+}
+
+# Главная страница
+main = {
+    'ingredients': 'section[class^="BurgerIngredients_ingredients"]',
+    # Кнопки
+    'buttons': {
+        # Оформить заказ
+        'order': './/main/section[2]//button',
+        # "Войти"
+        'enter': './/main/section[2]//button'
+    }
 }

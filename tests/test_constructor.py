@@ -57,7 +57,7 @@ def test_constructor_switch_filling(browser, page):
     # Проверка прокрутки до начала области просмотра
     assert int(heading.rect.get('y')) <= y
 
-def test_constructor_switch_souse(browser, page):
+def test_constructor_switch_sause(browser, page):
     # Заголовок "Начинки"
     heading = page.get_heading('Соусы')
 
