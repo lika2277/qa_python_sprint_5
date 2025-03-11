@@ -16,7 +16,7 @@ def test_entrance_from_cabinet(browser):
     WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
 
     # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(email)
+    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
 
     # Ввод "Пароль"
     browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
@@ -41,7 +41,7 @@ def test_entrance_from_forgot_password(browser):
     WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
 
     # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(email)
+    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
 
     # Ввод "Пароль"
     browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
@@ -66,7 +66,7 @@ def test_entrance_from_main(browser):
     WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
 
     # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(email)
+    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
 
     # Ввод "Пароль"
     browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
@@ -91,7 +91,7 @@ def test_entrance_from_register(browser):
     WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
 
     # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(email)
+    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
 
     # Ввод "Пароль"
     browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
