@@ -1,24 +1,4 @@
-# Локаторы для страницы конструктора
-constructor = {
-    # Табы переключения конструктора
-    'tabs': {
-        # Булки
-        'bread': './/main/section[1]/div/div[1]',
-        # Соусы
-        'sauce': './/main/section[1]/div/div[2]',
-        # Начинки
-        'filling': './/main/section[1]/div/div[3]'
-    },
-    # Секции конструктора
-    'sections': {
-        # Булки
-        'bread': './/h2[text()="Булки"]',
-        # Соусы
-        'sauce': './/h2[text()="Соусы"]',
-        # Начинки
-        'filling': './/h2[text()="Начинки"]'
-    }
-}
+
 
 # Локаторы для страницы входа
 entrance = {
@@ -70,4 +50,12 @@ fields = {
         'email': './/fieldset[2]//input[@type="text"]',
         'name': './/fieldset[1]//input[@type="text"]'
     }
+}
+
+# Локаторы для страницы конструктора
+constructor = {
+    # Таб переключения секции конструктора
+    'tab': 'div[class^="tab_tab__"]',
+    # Секции конструктора
+    'heading': 'div[class^="BurgerIngredients_ingredients__menuContainer"] > h2'
 }
