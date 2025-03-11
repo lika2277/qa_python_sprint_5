@@ -16,6 +16,8 @@ links = {
     'login': './/a[@href="/login"]',
     # "Личный кабинет"
     'account': 'a[class^="AppHeader_header__link"][href="/account"]',
+    'constructor': 'a[class^="AppHeader_header__link"][href="/"]',
+    'logo': 'div[class^="AppHeader_header__logo"] > a',
     # Регистрация
     'register': './/a[@href="/register"]'
 }
@@ -30,7 +32,8 @@ buttons = {
     # "Войти"
     'enter': './/button[text()="Войти"]',
     'exit': './/button[text()="Выход"]',
-    'register': './/button[text()="Зарегистрироваться"]'
+    'register': './/button[text()="Зарегистрироваться"]',
+    'enter_account': 'div[class^="BurgerConstructor_basket__container"] > button'
 }
 
 fields = {
@@ -52,6 +55,10 @@ constructor = {
     'tab': 'div[class^="tab_tab__"]',
     # Секции конструктора
     'heading': 'div[class^="BurgerIngredients_ingredients__menuContainer"] > h2'
+}
+
+page = {
+    'account': 'div[class^="Account_account"]'
 }
 
 # Главная страница
