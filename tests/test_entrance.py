@@ -4,102 +4,108 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from data import User, Url
 
-def test_entrance_from_cabinet(browser):
-    browser.get(Url().get_url())
+class TestEntrance:
 
-    email, password = User().get_credentials().values()
+    @staticmethod
+    def test_entrance_from_cabinet(browser):
+        browser.get(Url().get_url())
 
-    # Клик по кнопке "Личный кабинет"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        email, password = User().get_credentials().values()
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Личный кабинет"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Пароль"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_name).send_keys(email)
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.XPATH, locators.buttons.get('enter')).click()
+        # Ввод "Пароль"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание открытия главного экрана
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main.get('ingredients'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.XPATH, locators.button_enter).click()
 
-    assert browser.find_element(By.CSS_SELECTOR, locators.main.get('ingredients'))
+        # Ожидание открытия главного экрана
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main_ingredients)))
 
-def test_entrance_from_forgot_password(browser):
-    browser.get(Url().get_url('forgot'))
+        assert browser.find_element(By.CSS_SELECTOR, locators.main_ingredients)
 
-    email, password = User().get_credentials().values()
+    @staticmethod
+    def test_entrance_from_forgot_password(browser):
+        browser.get(Url().get_url('forgot'))
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        email, password = User().get_credentials().values()
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Пароль"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_name).send_keys(email)
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.XPATH, locators.buttons.get('enter')).click()
+        # Ввод "Пароль"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание открытия главного экрана
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main.get('ingredients'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.XPATH, locators.button_enter).click()
 
-    assert browser.find_element(By.CSS_SELECTOR, locators.main.get('ingredients'))
+        # Ожидание открытия главного экрана
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main_ingredients)))
 
-def test_entrance_from_main(browser):
-    browser.get(Url().get_url())
+        assert browser.find_element(By.CSS_SELECTOR, locators.main_ingredients)
 
-    email, password = User().get_credentials().values()
+    @staticmethod
+    def test_entrance_from_main(browser):
+        browser.get(Url().get_url())
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        email, password = User().get_credentials().values()
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Пароль"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_name).send_keys(email)
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.XPATH, locators.buttons.get('enter')).click()
+        # Ввод "Пароль"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание открытия главного экрана
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main.get('ingredients'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.XPATH, locators.button_enter).click()
 
-    assert browser.find_element(By.CSS_SELECTOR, locators.main.get('ingredients'))
+        # Ожидание открытия главного экрана
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main_ingredients)))
 
-def test_entrance_from_register(browser):
-    browser.get(Url().get_url('register'))
+        assert browser.find_element(By.CSS_SELECTOR, locators.main_ingredients)
 
-    email, password = User().get_credentials().values()
+    @staticmethod
+    def test_entrance_from_register(browser):
+        browser.get(Url().get_url('register'))
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        email, password = User().get_credentials().values()
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Пароль"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_name).send_keys(email)
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.XPATH, locators.buttons.get('enter')).click()
+        # Ввод "Пароль"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание открытия главного экрана
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main.get('ingredients'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.XPATH, locators.button_enter).click()
 
-    assert browser.find_element(By.CSS_SELECTOR, locators.main.get('ingredients'))
+        # Ожидание открытия главного экрана
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main_ingredients)))
+
+        assert browser.find_element(By.CSS_SELECTOR, locators.main_ingredients)

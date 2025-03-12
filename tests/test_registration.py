@@ -5,96 +5,100 @@ from selenium.webdriver.support.wait import WebDriverWait
 from generator import Generator
 from data import Url
 
-def test_registration_form(browser):
-    browser.get(Url().get_url())
+class TestRegistration:
 
-    # Клик по кнопке "Личный кабинет"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+    @staticmethod
+    def test_registration_form(browser):
+        browser.get(Url().get_url())
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Личный кабинет"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Клик по кнопке "Зарегистрироваться"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('register')).click()
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ожидание показа формы регистрации
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Клик по кнопке "Зарегистрироваться"
+        browser.find_element(By.CSS_SELECTOR, locators.link_register).click()
 
-    # Ввод "Имя"
-    browser.find_element(By.CSS_SELECTOR, locators.fields.get('name')).send_keys("Лика")
+        # Ожидание показа формы регистрации
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Email"
-    email = Generator.generate_login("liliana_bubnova_19") + '@yandex.ru'
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(email)
+        # Ввод "Имя"
+        browser.find_element(By.CSS_SELECTOR, locators.field_name).send_keys("Лика")
 
-    # Ввод "Пароль"
-    password = Generator.generate_password()
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        email = Generator.generate_login("liliana_bubnova_19") + '@yandex.ru'
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_email).send_keys(email)
 
-    # Клик по кнопке "Зарегистироваться"
-    browser.find_element(By.XPATH, locators.buttons.get('register')).click()
+        # Ввод "Пароль"
+        password = Generator.generate_password()
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, locators.buttons.get('enter'))))
+        # Клик по кнопке "Зарегистироваться"
+        browser.find_element(By.XPATH, locators.button_register).click()
 
-    # Ввод "Email"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('name')).send_keys(email)
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, locators.button_enter)))
 
-    # Ввод "Пароль"
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Email"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_name).send_keys(email)
 
-    # Клик по кнопке "Войти"
-    browser.find_element(By.XPATH, locators.buttons.get('enter')).click()
+        # Ввод "Пароль"
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Ожидание открытия главного экрана
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main.get('ingredients'))))
+        # Клик по кнопке "Войти"
+        browser.find_element(By.XPATH, locators.button_enter).click()
 
-    # Клик по кнопке "Личный кабинет"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        # Ожидание открытия главного экрана
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.main_ingredients)))
 
-    # Ожидание открытия личного кабинета
-    WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.page.get('account'))))
+        # Клик по кнопке "Личный кабинет"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    assert browser.find_element(By.CSS_SELECTOR, locators.page.get('account'))
+        # Ожидание открытия личного кабинета
+        WebDriverWait(browser, 5).until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.page_account)))
+
+        assert browser.find_element(By.CSS_SELECTOR, locators.page_account)
 
 
-def test_registration_error(browser):
-    browser.get(Url().get_url())
+    @staticmethod
+    def test_registration_error(browser):
+        browser.get(Url().get_url())
 
-    # Клик по кнопке "Личный кабинет"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('account')).click()
+        # Клик по кнопке "Личный кабинет"
+        browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
 
-    # Ожидание показа формы входа
-    WebDriverWait(browser, 5).until(
-        expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Ожидание показа формы входа
+        WebDriverWait(browser, 5).until(
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Клик по кнопке "Зарегистрироваться"
-    browser.find_element(By.CSS_SELECTOR, locators.links.get('register')).click()
+        # Клик по кнопке "Зарегистрироваться"
+        browser.find_element(By.CSS_SELECTOR, locators.link_register).click()
 
-    # Ожидание показа формы регистрации
-    WebDriverWait(browser, 5).until(
-        expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.forms.get('login'))))
+        # Ожидание показа формы регистрации
+        WebDriverWait(browser, 5).until(
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locators.form_login)))
 
-    # Ввод "Имя"
-    browser.find_element(By.CSS_SELECTOR, locators.fields.get('name')).send_keys("Лика")
+        # Ввод "Имя"
+        browser.find_element(By.CSS_SELECTOR, locators.field_name).send_keys("Лика")
 
-    # Ввод "Email"
-    email = Generator.generate_login("liliana_bubnova_19") + '@yandex.ru'
-    browser.find_element(By.CSS_SELECTOR, locators.forms.get('login') + ' ' + locators.fields.get('email')).send_keys(
-        email)
+        # Ввод "Email"
+        email = Generator.generate_login("liliana_bubnova_19") + '@yandex.ru'
+        browser.find_element(By.CSS_SELECTOR, locators.form_login + ' ' + locators.field_email).send_keys(
+            email)
 
-    # Ввод "Пароль"
-    password = Generator.generate_password(0, 99999)
-    browser.find_element(By.CSS_SELECTOR,
-                         locators.forms.get('login') + ' ' + locators.fields.get('password')).send_keys(password)
+        # Ввод "Пароль"
+        password = Generator.generate_password(0, 99999)
+        browser.find_element(By.CSS_SELECTOR,
+                             locators.form_login + ' ' + locators.field_password).send_keys(password)
 
-    # Клик по кнопке "Зарегистироваться"
-    browser.find_element(By.XPATH, locators.buttons.get('register')).click()
+        # Клик по кнопке "Зарегистироваться"
+        browser.find_element(By.XPATH, locators.button_register).click()
 
-    # Красная рамка вокруг поля "Пароль"
-    error_input = browser.find_element(By.CSS_SELECTOR, locators.errors.get('field'))
+        # Красная рамка вокруг поля "Пароль"
+        error_input = browser.find_element(By.CSS_SELECTOR, locators.error_field)
 
-    # Сообщение об ошибке
-    error_message = browser.find_element(By.CSS_SELECTOR, locators.errors.get('message'))
+        # Сообщение об ошибке
+        error_message = browser.find_element(By.CSS_SELECTOR, locators.error_message)
 
-    assert error_message and error_input
+        assert error_message and error_input
