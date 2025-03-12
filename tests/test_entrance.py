@@ -2,15 +2,15 @@ import locators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import User, Url
+from data import user, urls
 
 class TestEntrance:
 
     @staticmethod
     def test_entrance_from_cabinet(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Личный кабинет"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
@@ -34,9 +34,9 @@ class TestEntrance:
 
     @staticmethod
     def test_entrance_from_forgot_password(browser):
-        browser.get(Url().get_url('forgot'))
+        browser.get(urls.get('forgot'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
@@ -60,9 +60,9 @@ class TestEntrance:
 
     @staticmethod
     def test_entrance_from_main(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
@@ -86,9 +86,9 @@ class TestEntrance:
 
     @staticmethod
     def test_entrance_from_register(browser):
-        browser.get(Url().get_url('register'))
+        browser.get(urls.get('register'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()

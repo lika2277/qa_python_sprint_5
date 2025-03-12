@@ -3,13 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from generator import Generator
-from data import Url
+from data import urls
 
 class TestRegistration:
 
     @staticmethod
     def test_registration_form(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
         # Клик по кнопке "Личный кабинет"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
@@ -63,7 +63,7 @@ class TestRegistration:
 
     @staticmethod
     def test_registration_error(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
         # Клик по кнопке "Личный кабинет"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()

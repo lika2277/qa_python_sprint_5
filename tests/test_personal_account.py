@@ -2,15 +2,15 @@ import locators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import User, Url
+from data import user, urls
 
 class TestPersonalAccount:
 
     @staticmethod
     def test_personal_account_enter(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.button_enter_account).click()
@@ -40,9 +40,9 @@ class TestPersonalAccount:
 
     @staticmethod
     def test_personal_account_exit(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Личный кабинет"
         browser.find_element(By.CSS_SELECTOR, locators.link_account).click()
@@ -78,9 +78,9 @@ class TestPersonalAccount:
 
     @staticmethod
     def test_personal_account_to_constructor(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.button_enter_account).click()
@@ -115,9 +115,9 @@ class TestPersonalAccount:
 
     @staticmethod
     def test_personal_account_to_logo(browser):
-        browser.get(Url().get_url())
+        browser.get(urls.get('main'))
 
-        email, password = User().get_credentials().values()
+        email, password = user.values()
 
         # Клик по кнопке "Войти"
         browser.find_element(By.CSS_SELECTOR, locators.button_enter_account).click()
